@@ -2,9 +2,15 @@
 ```
 version: "2.2"
 networks:
-  lan:
-    external: true
-    name: "lan"
+  lan13:
+    name: lan13
+    driver: macvlan
+    driver_opts:
+      parent: eth1
+    ipam:
+      config:
+        - subnet: "192.168.13.0/24"
+          gateway: "192.168.13.1"
 services:
   transmission:
     container_name: "transmission"
@@ -15,10 +21,9 @@ services:
       PUID: 0
       PGID: 0
     volumes:
-      - "/mnt/vusb/docker/transmission/config:/config"
-      - "/mnt/vusb/docker/transmission/watch:/watch"
-      - "/mnt/vusb/docker/transmission/downloads:/downloads"
-      - "/mnt/vusb:/satashare1-2"
+      - "/mnt/rfs/docker/transmission/config:/config"
+      - "/mnt/rfs/docker/transmission/watch:/watch"
+      - "/mnt/rfs/docker/transmission/downloads:/downloads"
     networks:
       lan:
         ipv4_address: 192.168.13.51
