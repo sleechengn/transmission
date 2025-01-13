@@ -1,6 +1,5 @@
 
 ```
-version: "2.2"
 networks:
   lan13:
     name: lan13
@@ -25,6 +24,6 @@ services:
       - "/mnt/rfs/docker/transmission/watch:/watch"
       - "/mnt/rfs/docker/transmission/downloads:/downloads"
     networks:
-      lan:
+      lan13:
         ipv4_address: 192.168.13.51
 ```
